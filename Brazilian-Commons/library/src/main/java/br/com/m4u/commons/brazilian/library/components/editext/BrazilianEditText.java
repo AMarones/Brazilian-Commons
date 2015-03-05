@@ -1,4 +1,4 @@
-package br.com.m4u.commons.brazilian.library.editext;
+package br.com.m4u.commons.brazilian.library.components.editext;
 
 import android.content.Context;
 import android.util.AttributeSet;
