@@ -1,39 +1,72 @@
 package br.com.m4u.brazilian.commons;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+
+import java.util.List;
+
+import br.com.m4u.commons.brazilian.library.validator.BrazilianValidator;
+import br.com.m4u.commons.brazilian.library.validator.saripaar.annotations.Cpf;
+import br.com.m4u.commons.brazilian.library.validator.saripaar.annotations.MobilePhone;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 
-public class SampleActivity extends ActionBarActivity {
+public class SampleActivity extends ActionBarActivity implements Validator.ValidationListener {
+
+    @InjectView(R.id.edittext_cpf)
+    @Cpf
+    EditText editTextCpf;
+
+    @InjectView(R.id.edittext_mobile_phone)
+    @MobilePhone
+    EditText editTextMobilePhone;
+
+    @InjectView(R.id.textview_message)
+    TextView textViewMessage;
+
+    BrazilianValidator validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
+
+        validator = new BrazilianValidator(this);
+        validator.setValidationListener(this);
+
+        ButterKnife.inject(this);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sample, menu);
-        return true;
+    @OnClick(R.id.button_validate)
+    public void validate() {
+        validator.validate();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onValidationSucceeded() {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        textViewMessage.setText("SUCESSO");
+    }
+
+    public void onValidationFailed(List<ValidationError> errors) {
+
+        for (ValidationError error : errors) {
+
+            if (error.getView() instanceof EditText) {
+                EditText edit = (EditText) error.getView();
+
+                edit.setError(error.getCollatedErrorMessage(this));
+            }
+
         }
 
-        return super.onOptionsItemSelected(item);
+        textViewMessage.setText("...");
     }
 }

@@ -1,16 +1,72 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
+                xmlns:brcommons="http://schemas.android.com/apk/lib/br.com.m4u.commons.brazilian.library"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context=".SampleActivity">
+                tools:context="br.com.m4u.libraries.commons.brazil.demo.SampleActivity">
+
+
+    <LinearLayout
+        android:id="@+id/group_cpf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informe o seu CPF"/>
+
+        <br.com.m4u.commons.brazilian.library.components.editext.BrazilianEditText
+            android:id="@+id/edittext_cpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="14"
+            android:hint="CPF"
+            android:inputType="number"
+            brcommons:textWatcher="CPF"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/group_cpf"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informe o seu celular"/>
+
+        <br.com.m4u.commons.brazilian.library.components.editext.BrazilianEditText
+            android:id="@+id/edittext_mobile_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="14"
+            android:hint="Celular"
+            android:inputType="phone"
+            brcommons:textWatcher="Phone"/>
+    </LinearLayout>
+
 
     <TextView
-        android:text="@string/hello_world"
+        android:id="@+id/textview_message"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="..."/>
+
+    <Button
+        android:id="@+id/button_validate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Validar"/>
 
 </RelativeLayout>
+

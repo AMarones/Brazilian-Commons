@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Brazilian-Commons</string>
+    <string name="app_name">app-demo</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
