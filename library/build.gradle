@@ -2,6 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
+// This is the library version used when deploying the artifact
+version = "0.2.0"
+
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
@@ -9,9 +12,10 @@ android {
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "0.2.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,10 +29,10 @@ dependencies {
     compile 'com.mobsandgeeks:android-saripaar:2.0-SNAPSHOT'
     compile 'com.jakewharton:butterknife:6.1.0'
 }
+
 def siteUrl = 'https://github.com/AMarones/Brazilian-Commons'      // Homepage URL of the library
 def gitUrl = 'https://github.com/AMarones/Brazilian-Commons.git'   // Git repository URL
-group = "br.com.m4u.commons.brazilian.library"                                        // Maven Group ID for the artifact
-
+group = "br.com.m4u.commons.brazilian"                             // Maven Group ID for the artifact
 
 install {
     repositories.mavenInstaller {
@@ -48,6 +52,7 @@ install {
                         url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
                 }
+
                 developers {
                     developer {
                         id 'AMarones'
@@ -55,6 +60,7 @@ install {
                         email 'alexandre.marones@gmail.com'
                     }
                 }
+
                 scm {
                     connection gitUrl
                     developerConnection gitUrl
@@ -81,7 +87,26 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
 artifacts {
-    archives javadocJar
+//    archives javadocJar
     archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "Brazilian-Commons"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
 }
