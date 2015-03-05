@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BrazilianEditText">
+        <attr name="textWatcher" format="enum">
+            <enum name="CPF" value="0"/>
+            <enum name="Phone" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>
