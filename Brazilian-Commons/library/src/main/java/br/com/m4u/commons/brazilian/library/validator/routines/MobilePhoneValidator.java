@@ -16,6 +16,9 @@ public class MobilePhoneValidator {
     }
 
     public boolean validate(String value) {
+
+        value = value.replaceAll("\\D+","");
+
         return pattern.matcher(value).matches();
     }
 }
