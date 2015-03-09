@@ -1,7 +1,7 @@
 package br.com.m4u.commons.brazilian.library.validator;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 
 import com.mobsandgeeks.saripaar.Validator;
 
