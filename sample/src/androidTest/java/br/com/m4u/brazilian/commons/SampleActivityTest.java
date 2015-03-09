@@ -5,8 +5,9 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
-import br.com.m4u.commons.brazilia.app.demo.automator.Automator;
-import br.com.m4u.commons.brazilia.app.demo.automator.AutomatorFactory;
+import br.com.m4u.brazilian.commons.automator.Automator;
+import br.com.m4u.brazilian.commons.automator.AutomatorFactory;
+import br.com.m4u.commons.brazilian.library.components.editext.BrazilianEditText;
 
 
 public class SampleActivityTest extends ActivityInstrumentationTestCase2 {
@@ -46,6 +47,26 @@ public class SampleActivityTest extends ActivityInstrumentationTestCase2 {
         solo.enterText(1, stringPhone);
 
         assertEquals(formatedPhone, solo.getEditText(1).getEditableText().toString());
+    }
+
+    public void testTextValueNumberCPF() {
+        String stringCpf = "13064663771";
+
+        solo.enterText(0, stringCpf);
+
+        BrazilianEditText brazilianEditText = (BrazilianEditText) solo.getEditText(0);
+
+        assertEquals(stringCpf, brazilianEditText.getTextValueNumber());
+    }
+
+    public void testTextValueNumberPhone() {
+        String stringPhone = "21997178644";
+
+        solo.enterText(1, stringPhone);
+
+        BrazilianEditText brazilianEditText = (BrazilianEditText) solo.getEditText(1);
+
+        assertEquals(stringPhone, brazilianEditText.getTextValueNumber());
     }
 
 }

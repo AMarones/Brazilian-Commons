@@ -10,6 +10,7 @@ import com.mobsandgeeks.saripaar.Validator;
 
 import java.util.List;
 
+import br.com.m4u.commons.brazilian.library.components.editext.BrazilianEditText;
 import br.com.m4u.commons.brazilian.library.validator.BrazilianValidator;
 import br.com.m4u.commons.brazilian.library.validator.saripaar.annotations.Cpf;
 import br.com.m4u.commons.brazilian.library.validator.saripaar.annotations.MobilePhone;
@@ -22,11 +23,11 @@ public class SampleActivity extends ActionBarActivity implements Validator.Valid
 
     @InjectView(R.id.edittext_cpf)
     @Cpf
-    EditText editTextCpf;
+    BrazilianEditText editTextCpf;
 
     @InjectView(R.id.edittext_mobile_phone)
     @MobilePhone
-    EditText editTextMobilePhone;
+    BrazilianEditText editTextMobilePhone;
 
     @InjectView(R.id.textview_message)
     TextView textViewMessage;
