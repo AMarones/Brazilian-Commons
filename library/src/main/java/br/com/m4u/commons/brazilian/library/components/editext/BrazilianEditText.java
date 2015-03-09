@@ -52,4 +52,10 @@ public class BrazilianEditText extends android.widget.EditText {
             addTextChangedListener(new PhoneTextWatcher(this));
         }
     }
+
+    public String getTextValueNumber() {
+        String stringWithoutMask = this.getText().toString();
+        stringWithoutMask = stringWithoutMask.replaceAll("[^0-9]", "");
+        return stringWithoutMask;
+    }
 }
