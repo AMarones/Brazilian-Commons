@@ -6,12 +6,12 @@ apply plugin: 'com.jfrog.bintray'
 version = "0.4.0"
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 26
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 21
+        targetSdkVersion 26
         versionCode 4
         versionName "0.4.0"
     }
@@ -25,10 +25,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.mobsandgeeks:android-saripaar:2.0-SNAPSHOT'
-    compile 'com.android.support:support-v4:21.+'
-    compile 'com.jakewharton:butterknife:6.1.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.mobsandgeeks:android-saripaar:2.0.0'
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.jakewharton:butterknife:8.2.1'
 }
 
 def siteUrl = 'https://github.com/AMarones/Brazilian-Commons'      // Homepage URL of the library
@@ -72,7 +72,6 @@ install {
         }
     }
 }
-
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
